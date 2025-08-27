@@ -1,21 +1,40 @@
-<!-- pages/home.html -->
 ---
-title: Home
 layout: layouts/base.html
+title: Home
+permalink: /
 ---
-<section id="home" class="container mx-auto flex min-h-screen flex-col items-center justify-center p-4 md:p-8 lg:p-12 text-center">
-    <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-        Hi, I'm <span class="text-blue-600">Farman Khan</span>
-    </h1>
-    <p class="mt-4 max-w-3xl text-lg md:text-xl text-gray-600 dark:text-gray-400">
-        A passionate Data Analyst & Storyteller, transforming complex data into actionable insights to drive business success.
+
+<section class="text-center py-20">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4">From Raw Data to Clear Narratives</h1>
+    <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto mb-8">
+        I'm Farman Khan, a data analyst who specializes in data storytelling. I bridge the gap between complex data and strategic business decisions.
     </p>
-    <div class="mt-8 flex space-x-4">
-        <a href="/portfolio/" class="inline-flex items-center justify-center rounded-full bg-blue-600 px-6 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:bg-blue-700">
-            View My Work
-        </a>
-        <a href="/contact/" class="inline-flex items-center justify-center rounded-full border border-gray-300 px-6 py-3 font-semibold text-gray-700 shadow-md transition-all duration-300 hover:bg-gray-200 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
-            Get in Touch
-        </a>
+    <a href="/portfolio/" class="bg-primary text-white font-bold py-3 px-8 rounded-md text-lg hover:bg-secondary transition-all duration-300 transform hover:scale-105">
+        Explore My Projects
+    </a>
+</section>
+
+<section class="py-16">
+    <div class="text-center">
+        <h2 class="text-3xl font-bold mb-2">My Core Competencies</h2>
+        <p class="text-slate-500 mb-10">I leverage these tools to deliver impactful results.</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <div class="bg-white dark:bg-dark-card p-6 rounded-lg shadow-md text-center">
+            <h3 class="text-xl font-bold text-primary dark:text-secondary mb-2">Data Wrangling & EDA</h3>
+            <p>Cleaning, transforming, and exploring data using Python (Pandas) and SQL.</p>
+        </div>
+        <div class="bg-white dark:bg-dark-card p-6 rounded-lg shadow-md text-center">
+            <h3 class="text-xl font-bold text-primary dark:text-secondary mb-2">Statistical Modeling</h3>
+            <p>Applying statistical tests and building predictive models with Scikit-learn and R.</p>
+        </div>
+        <div class="bg-white dark:bg-dark-card p-6 rounded-lg shadow-md text-center">
+            <h3 class="text-xl font-bold text-primary dark:text-secondary mb-2">Interactive Dashboards</h3>
+            <p>Creating insightful and user-friendly visualizations in Tableau and Power BI.</p>
+        </div>
+        <div class="bg-white dark:bg-dark-card p-6 rounded-lg shadow-md text-center">
+            <h3 class="text-xl font-bold text-primary dark:text-secondary mb-2">A/B Testing Analysis</h3>
+            <p>Designing and interpreting experiments to drive product and marketing growth.</p>
+        </div>
     </div>
 </section>

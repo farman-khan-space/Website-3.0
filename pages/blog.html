@@ -1,25 +1,31 @@
-<!-- pages/blog.html -->
 ---
-title: Blog
 layout: layouts/base.html
+title: Blog
 ---
-<section id="blog" class="container mx-auto min-h-screen p-4 py-16 md:p-8 lg:p-12">
-    <h2 class="text-4xl md:text-5xl font-bold text-center mb-8">Writings & Articles</h2>
-    <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <div class="card rounded-2xl shadow-lg p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl dark:bg-gray-800 dark:border-gray-700">
-            <h3 class="text-xl font-semibold mb-2">The Rise of Augmented Analytics</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">August 24, 2025</p>
-            <p class="text-gray-600 dark:text-gray-400">A look into how AI and machine learning are changing the landscape of data analysis, making it more accessible to everyone.</p>
-        </div>
-        <div class="card rounded-2xl shadow-lg p-6 transition-all duration-300 hover:scale-[1.02] hover:hover:shadow-2xl dark:bg-gray-800 dark:border-gray-700">
-            <h3 class="text-xl font-semibold mb-2">5 Essential SQL Techniques</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">July 15, 2025</p>
-            <p class="text-gray-600 dark:text-gray-400">A practical guide to mastering crucial SQL skills for data manipulation, from window functions to common table expressions.</p>
-        </div>
-        <div class="card rounded-2xl shadow-lg p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl dark:bg-gray-800 dark:border-gray-700">
-            <h3 class="text-xl font-semibold mb-2">Demystifying Data Cleaning</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">June 30, 2025</p>
-            <p class="text-gray-600 dark:text-gray-400">A comprehensive guide to the critical first step in any data project: cleaning and preprocessing raw data.</p>
-        </div>
+<section class="py-12">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold">The Data Point</h1>
+        <p class="text-lg mt-2 text-slate-600 dark:text-slate-400">Thoughts and tutorials on data, analytics, and visualization.</p>
+    </div>
+    <div class="max-w-3xl mx-auto space-y-10">
+        
+        <article>
+            <p class="text-sm text-slate-500 dark:text-slate-400">August 27, 2025</p>
+            <h2 class="text-3xl font-bold mt-1"><a href="#" class="text-primary dark:text-secondary hover:underline">The Art of Data Storytelling: Beyond the Numbers</a></h2>
+            <p class="text-lg text-slate-700 dark:text-slate-300 mt-3">
+                A great analysis is useless if it can't be understood. This post dives into the principles of data storytelling and how to craft a compelling narrative that resonates with any audience, technical or not.
+            </p>
+        </article>
+
+        <hr class="dark:border-slate-800">
+
+        <article>
+            <p class="text-sm text-slate-500 dark:text-slate-400">August 10, 2025</p>
+            <h2 class="text-3xl font-bold mt-1"><a href="#" class="text-primary dark:text-secondary hover:underline">SQL vs. NoSQL: A Data Analyst's Perspective</a></h2>
+            <p class="text-lg text-slate-700 dark:text-slate-300 mt-3">
+                When should you use a relational database, and when is NoSQL a better fit? We'll break down the key differences, pros, and cons from the viewpoint of an analyst who needs to query and extract insights efficiently.
+            </p>
+        </article>
+        
     </div>
 </section>

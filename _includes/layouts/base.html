@@ -1,78 +1,65 @@
-<!-- _includes/layouts/base.html -->
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} - Farman Khan</title>
+    <title>{{ title }} | Farman Khan - Data Analyst</title>
     <link rel="stylesheet" href="/css/style.css">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-50 text-gray-900 transition-colors duration-300 dark:bg-gray-950 dark:text-gray-100 font-sans">
+<!-- THIS IS THE FIX: We apply the styling classes directly to the body tag -->
+<body class="font-sans bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-300 transition-colors duration-300">
+
     {% include "partials/header.html" %}
 
-    <main>
+    <main class="container mx-auto px-6 py-8 pt-28 min-h-screen">
         {{ content | safe }}
     </main>
 
     {% include "partials/footer.html" %}
 
     <script>
-        // JavaScript for theme toggle and scroll-to-top button
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeToggle = document.getElementById('theme-toggle');
-            const htmlElement = document.documentElement;
-            const scrollToTopBtn = document.getElementById('scroll-to-top');
-            const moonIcon = document.getElementById('moon-icon');
-            const sunIcon = document.getElementById('sun-icon');
+        // --- Theme Toggle Logic ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        const htmlEl = document.documentElement;
 
-            // Function to set the theme and update icons
-            const setTheme = (theme) => {
-                if (theme === 'dark') {
-                    htmlElement.classList.add('dark');
-                    moonIcon.classList.add('hidden');
-                    sunIcon.classList.remove('hidden');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    htmlElement.classList.remove('dark');
-                    moonIcon.classList.remove('hidden');
-                    sunIcon.classList.add('hidden');
-                    localStorage.setItem('theme', 'light');
-                }
-            };
-
-            // Check for saved theme preference or system preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                setTheme(savedTheme);
+        const setTheme = (theme) => {
+            if (theme === 'dark') {
+                htmlEl.classList.add('dark');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+                localStorage.setItem('theme', 'dark');
             } else {
-                setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                htmlEl.classList.remove('dark');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+                localStorage.setItem('theme', 'light');
             }
+        };
 
-            // Event listener for theme toggle button
-            themeToggle.addEventListener('click', () => {
-                const newTheme = htmlElement.classList.contains('dark') ? 'light' : 'dark';
-                setTheme(newTheme);
-            });
-
-            // Event listener for scroll-to-top button
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 400) {
-                    scrollToTopBtn.classList.remove('hidden');
-                } else {
-                    scrollToTopBtn.classList.add('hidden');
-                }
-            });
-
-            scrollToTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
+        themeToggleBtn.addEventListener('click', () => {
+            setTheme(htmlEl.classList.contains('dark') ? 'light' : 'dark');
         });
+
+        const storedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(storedTheme ? storedTheme : (systemPrefersDark ? 'dark' : 'light'));
+
+        // --- Scroll-to-Top Logic ---
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+        scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
+
 </body>
 </html>
