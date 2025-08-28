@@ -1,8 +1,16 @@
 <div class="container header-container">
     <div class="logo">
-        <!-- Changed JD to FK and used the url filter for the link -->
-        <a href="{{ '/' | url }}">FK</a>
-    </div>
+    <a href="{{ '/' | url }}" aria-label="Farman Khan Home">
+        <span class="logo-pair logo-pair-light">
+            <img src="{{ '/img/logo-light-theme.svg' | url }}" alt="" class="logo-icon">
+            <img src="{{ '/img/wordmark-light-theme.svg' | url }}" alt="Farman Khan Logo" class="logo-wordmark">
+        </span>
+        <span class="logo-pair logo-pair-dark">
+            <img src="{{ '/img/logo-dark-theme.svg' | url }}" alt="" class="logo-icon">
+            <img src="{{ '/img/wordmark-dark-theme.svg' | url }}" alt="Farman Khan Logo" class="logo-wordmark">
+        </span>
+    </a>
+</div>
     <nav id="main-nav">
         <ul>
             <!-- All links now use the url filter for correct paths -->

@@ -40,8 +40,54 @@ section { padding: 3rem 0; }
 
 /* --- Header --- */
 header { position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height); background-color: var(--bg-color); border-bottom: 1px solid var(--border-color); z-index: 1000; display: flex; align-items: center; transition: background-color 0.3s ease, border-color 0.3s ease; }
-.header-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-.logo a { font-size: 1.5rem; font-weight: bold; color: var(--text-color); }
+
+.header-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 1.5rem;
+    top: 65%;
+    transform: translateY(-50%);
+}
+
+.logo a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.logo-pair {
+    display: inline-flex;
+    align-items: center;
+}
+
+.logo-pair .logo-wordmark {
+    margin-left: 15px; /* Creates space instead of overlapping */
+}
+
+.logo-icon {
+    height: 45px;
+}
+
+.logo-wordmark {
+    height: 50px;
+}
+
+.logo-pair-dark {
+    display: none;
+}
+.dark .logo-pair-light {
+    display: none;
+}
+.dark .logo-pair-dark {
+    display: inline-flex;
+}
+
 .header-controls { display: flex; align-items: center; gap: 0.5rem; }
 .menu-toggle { background: none; border: none; cursor: pointer; color: var(--text-color); padding: 0.5rem; border-radius: 50%; display: none; align-items: center; justify-content: center; z-index: 1001; }
 .menu-toggle:hover { background-color: var(--card-bg-color); }
@@ -71,7 +117,18 @@ footer { border-top: 1px solid var(--border-color); padding: 2rem 0; text-align:
 
 /* --- Mobile Styles --- */
 @media (max-width: 768px) {
-    h1 { font-size: 2.2rem; } h2 { font-size: 1.8rem; }
+    .logo-icon {
+        display: none;
+    }
+    .logo-wordmark {
+        height: 34px;
+    }
+    .logo-pair .logo-wordmark {
+        margin-left: 0;
+    }
+
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
     .menu-toggle { display: flex; }
     #main-nav { position: fixed; top: 0; right: 0; width: 100%; height: 100%; background-color: var(--bg-color); transform: translateX(100%); transition: transform 0.3s ease-in-out; display: flex; justify-content: center; align-items: center; }
     body.nav-open #main-nav { transform: translateX(0); }
