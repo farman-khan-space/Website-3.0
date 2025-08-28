@@ -6,7 +6,6 @@
     <title>{{ title }} | Farman Khan - Data Analyst</title>
    
     <script>
-      // This script runs first to prevent a flash of the wrong theme
       (function() {
         const theme = localStorage.getItem('theme');
         if (theme === 'dark') {
@@ -15,9 +14,9 @@
       })();
     </script>
     
-    <!-- This is the new line for the contact page icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
+    <!-- This is the crucial line that fixes the CSS path -->
     <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
 </head>
 <body>
@@ -32,22 +31,15 @@
     {% include "partials/footer.html" %}
 
     <script>
-        // All your interactive JavaScript is now here, in one place.
         document.addEventListener('DOMContentLoaded', () => {
-            
-            /** Sets the 'active' class on the correct navigation link. */
             const updateActiveNavLink = () => {
                 const navLinks = document.querySelectorAll('#main-nav a');
                 if (!navLinks.length) return;
-                
                 const currentPath = window.location.pathname;
-
                 navLinks.forEach(link => {
                     const linkPath = new URL(link.href).pathname;
                     link.classList.remove('active');
-
-                    // Check for exact match or homepage variations
-                    if (linkPath === currentPath || (linkPath.endsWith('/') && currentPath === linkPath.slice(0, -1)) || (currentPath.endsWith('/') && linkPath === currentPath.slice(0, -1))) {
+                    if (linkPath === currentPath || (linkPath.endsWith('/') && currentPath.replace(/\/$/, "") === linkPath.slice(0, -1))) {
                         link.classList.add('active');
                     } else if (link.getAttribute('href').includes('portfolio') && currentPath.includes('/projects/')) {
                         link.classList.add('active');
@@ -56,37 +48,27 @@
                     }
                 });
             };
-
-            // Manages the light/dark theme toggle using the floating button.
             const initializeTheme = () => {
                 const themeToggleButton = document.getElementById('theme-toggle-floating');
                 if (!themeToggleButton) return;
-
                 const htmlEl = document.documentElement; 
-
                 themeToggleButton.addEventListener('click', () => {
                     htmlEl.classList.toggle('dark');
                     const theme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
                     localStorage.setItem('theme', theme);
                 });
             };
-
-            /** Manages the mobile hamburger menu. */
             const initializeMobileMenu = () => {
                 const menuToggle = document.getElementById('menu-toggle');
                 if (!menuToggle) return;
-                
                 menuToggle.addEventListener('click', () => {
                     const isNavOpen = document.body.classList.toggle('nav-open');
                     menuToggle.setAttribute('aria-expanded', isNavOpen);
                 });
             };
-
-            /** Manages the scroll-to-top button visibility and action. */
             const initializeScrollToTop = () => {
                 const scrollToTopButton = document.getElementById('scroll-to-top');
                 if (!scrollToTopButton) return;
-
                 window.addEventListener('scroll', () => {
                     if (window.scrollY > 500) {
                         scrollToTopButton.classList.add('visible');
@@ -94,13 +76,10 @@
                         scrollToTopButton.classList.remove('visible');
                     }
                 });
-
                 scrollToTopButton.addEventListener('click', () => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             };
-
-            // Initialize all functionality
             initializeTheme();
             initializeMobileMenu();
             updateActiveNavLink();
