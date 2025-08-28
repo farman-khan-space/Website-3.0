@@ -1,5 +1,4 @@
 module.exports = function(eleventyConfig) {
-  // Copy the 'css' and 'js' folders to the output folder '_site'.
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("js");
 
@@ -10,6 +9,9 @@ module.exports = function(eleventyConfig) {
       output: "_site"
     },
     htmlTemplateEngine: "njk",
-    markdownTemplateEngine: "njk"
+    markdownTemplateEngine: "njk",
+    pathPrefix: process.env.ELEVENTY_ENV === "production" 
+      ? "/Website-3.0/" 
+      : "/"   // keep localhost clean
   };
 };
