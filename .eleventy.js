@@ -5,7 +5,7 @@ module.exports = function(eleventyConfig) {
   return {
     dir: {
       input: "pages",
-      includes: "/_includes",
+      includes: "../_includes",  // go up one level from pages/
       output: "_site"
     },
     htmlTemplateEngine: "njk",
