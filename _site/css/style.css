@@ -1,23 +1,174 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ==========================================================================
+   1. GLOBAL STYLES (from global.css)
+   ========================================================================== */
 
-/* Base body styles using our new theme colors */
-body {
-  /* This is the final fix for both text and background colors */
-  @apply bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-300 transition-colors duration-300;
+/* --- Root Variables and Base Styles --- */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #212121;
+    --accent-color: #757575;
+    --card-bg-color: #f5f5f5;
+    --border-color: #e0e0e0;
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --container-width: 1100px;
+    --header-height: 70px;
 }
 
-/* Updated scroll-to-top button styles */
-.scroll-to-top {
-  @apply fixed bottom-6 right-6 p-3 rounded-full bg-primary text-white shadow-lg transition-all duration-300 hover:bg-secondary hover:scale-110 focus:outline-none;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(100px);
+.dark {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --accent-color: #c0c0c0;
+    --card-bg-color: #1e1e1e;
+    --border-color: #333333;
 }
 
-.scroll-to-top.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+/* --- Reset and Typography --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-family); background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: background-color 0.3s ease, color 0.3s ease; }
+body.nav-open { overflow: hidden; }
+h1, h2, h3 { line-height: 1.2; margin-bottom: 1rem; }
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 2rem; }
+h3 { font-size: 1.5rem; }
+a { color: var(--accent-color); text-decoration: none; transition: color 0.2s ease; }
+a:hover { color: var(--text-color); }
+
+/* --- Layout --- */
+.container { max-width: var(--container-width); margin: 0 auto; padding: 0 1.5rem; }
+main { padding-top: var(--header-height); padding-bottom: 4rem; }
+section { padding: 3rem 0; }
+
+/* --- Header --- */
+header { position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height); background-color: var(--bg-color); border-bottom: 1px solid var(--border-color); z-index: 1000; display: flex; align-items: center; transition: background-color 0.3s ease, border-color 0.3s ease; }
+.header-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+.logo a { font-size: 1.5rem; font-weight: bold; color: var(--text-color); }
+.header-controls { display: flex; align-items: center; gap: 0.5rem; }
+.menu-toggle { background: none; border: none; cursor: pointer; color: var(--text-color); padding: 0.5rem; border-radius: 50%; display: none; align-items: center; justify-content: center; z-index: 1001; }
+.menu-toggle:hover { background-color: var(--card-bg-color); }
+nav ul { list-style: none; display: flex; gap: 1.5rem; }
+nav a { font-weight: 500; }
+nav a.active { color: var(--text-color); font-weight: bold; }
+
+/* --- Footer --- */
+footer { border-top: 1px solid var(--border-color); padding: 2rem 0; text-align: center; color: var(--accent-color); transition: border-color 0.3s ease; }
+
+/* --- Generic Card Style --- */
+.card { background-color: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+.dark .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+
+/* --- Floating Control Dock --- */
+.floating-controls { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1000; }
+.control-btn { width: 50px; height: 50px; border-radius: 50%; background-color: var(--card-bg-color); color: var(--text-color); border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: transform 0.2s, background-color 0.2s; }
+.dark .control-btn { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
+.control-btn:hover { transform: scale(1.1); background-color: var(--bg-color); }
+#theme-toggle-floating .sun { display: none; }
+#theme-toggle-floating .moon { display: block; }
+.dark #theme-toggle-floating .sun { display: block; }
+.dark #theme-toggle-floating .moon { display: none; }
+#scroll-to-top { opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.3s, visibility 0.3s, transform 0.3s; }
+#scroll-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+
+/* --- Mobile Styles --- */
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; } h2 { font-size: 1.8rem; }
+    .menu-toggle { display: flex; }
+    #main-nav { position: fixed; top: 0; right: 0; width: 100%; height: 100%; background-color: var(--bg-color); transform: translateX(100%); transition: transform 0.3s ease-in-out; display: flex; justify-content: center; align-items: center; }
+    body.nav-open #main-nav { transform: translateX(0); }
+    #main-nav ul { flex-direction: column; text-align: center; gap: 2rem; }
+    #main-nav a { font-size: 1.5rem; }
+    .floating-controls { bottom: 15px; right: 15px; }
+    .control-btn { width: 55px; height: 55px; }
 }
+
+/* --- Page Load Fade-in Animation --- */
+body { animation: fadeIn 0.8s ease-out; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+
+/* ==========================================================================
+   2. HOME PAGE STYLES (from home.css)
+   ========================================================================== */
+#intro { display: flex; align-items: center; justify-content: center; text-align: center; min-height: calc(60vh - var(--header-height)); }
+.intro-content .role { font-size: 1.5rem; color: var(--accent-color); margin: 0.5rem 0; }
+.intro-content .tagline { font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.project-card { display: flex; flex-direction: column; }
+.project-card h3 { color: var(--text-color); }
+.project-card p { flex-grow: 1; color: var(--accent-color); margin-bottom: 1rem; }
+.project-card .view-project { font-weight: 500; align-self: flex-start; color: var(--text-color); }
+a.project-card { text-decoration: none; }
+.article-list { display: grid; gap: 1.5rem; }
+.article-card { display: flex; flex-direction: column; }
+.article-card p { color: var(--accent-color); margin-bottom: 1rem; flex-grow: 1; }
+.article-card .read-more { font-weight: 500; align-self: flex-start; }
+
+
+/* ==========================================================================
+   3. PORTFOLIO PAGE STYLES (from portfolio.css)
+   ========================================================================== */
+#portfolio .subtitle { text-align: center; font-size: 1.1rem; color: var(--accent-color); margin-top: -1rem; margin-bottom: 3rem; }
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.portfolio-grid .card { display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+.portfolio-grid .card-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+.portfolio-grid .card h3 { margin-top: 0; }
+.portfolio-grid .card p { color: var(--accent-color); flex-grow: 1; margin-bottom: 1.5rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+.tags span { background-color: var(--border-color); color: var(--accent-color); padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-weight: 500; transition: background-color 0.3s ease; }
+.dark .tags span { background-color: #333; }
+.portfolio-grid .view-project { font-weight: 500; color: var(--text-color); align-self: flex-start; }
+
+
+/* ==========================================================================
+   4. BLOG LISTING PAGE STYLES (from blog.css)
+   ========================================================================== */
+.article-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+.article-card { display: block; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem 2rem; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+.article-card h3 { margin-top: 0; color: var(--text-color); }
+.article-card .date { font-size: 0.9rem; color: var(--accent-color); margin-bottom: 1rem; }
+.article-card .excerpt { color: var(--text-color); margin-bottom: 1.5rem; }
+.article-card .read-more { font-weight: 600; color: var(--text-color); }
+
+
+/* ==========================================================================
+   5. GENERIC PAGE STYLES (from page.css)
+   ========================================================================== */
+.page-content { max-width: 800px; text-align: center; padding-top: 2rem; padding-bottom: 2rem; }
+.page-content .subtitle { font-size: 1.1rem; color: var(--accent-color); margin-top: -1rem; margin-bottom: 3rem; }
+.profile-image-container { margin-bottom: 2rem; }
+.profile-image { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--border-color); object-fit: cover; }
+.about-text { text-align: left; line-height: 1.8; }
+.about-text p { margin-bottom: 1.5rem; }
+.contact-info { margin-bottom: 3rem; line-height: 2; }
+.contact-info a { color: var(--text-color); font-weight: 500; }
+
+
+/* ==========================================================================
+   6. SINGLE POST STYLES (from post.css)
+   ========================================================================== */
+.post-header { text-align: center; border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; margin-bottom: 2rem; }
+.post-header .post-meta { margin-top: 1rem; font-size: 0.9rem; color: var(--accent-color); }
+.post-content { max-width: 750px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; }
+.post-content h2, .post-content h3 { margin-top: 2.5rem; margin-bottom: 1rem; }
+.post-content p { margin-bottom: 1.5rem; }
+.post-content a { text-decoration: underline; }
+.post-content code { background-color: var(--card-bg-color); border: 1px solid var(--border-color); padding: 0.2rem 0.4rem; border-radius: 4px; }
+.back-to-blog { display: inline-block; margin-top: 3rem; font-weight: 600; }
+
+
+/* ==========================================================================
+   7. SINGLE PROJECT STYLES (from project.css)
+   ========================================================================== */
+.project-case-study { max-width: 800px; }
+.project-header { text-align: center; border-bottom: 1px solid var(--border-color); margin-bottom: 2rem; padding-bottom: 2rem; }
+.project-header .summary { font-size: 1.1rem; color: var(--accent-color); max-width: 650px; margin: 0.5rem auto 0; }
+.project-case-study section { margin-bottom: 2.5rem; }
+.project-case-study h2 { border-bottom: none; font-size: 1.8rem; margin-bottom: 1.5rem; }
+.tools-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0.75rem; padding: 0; }
+.tools-list li { background-color: var(--border-color); color: var(--accent-color); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.9rem; font-weight: 500; }
+.dark .tools-list li { background-color: #333; }
+.project-case-study ol { padding-left: 1.5rem; line-height: 1.8; }
+.project-case-study ol li { margin-bottom: 1rem; }
+.project-visual { max-width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid var(--border-color); margin: 2rem 0 0.5rem; }
+figcaption { text-align: center; font-style: italic; color: var(--accent-color); font-size: 0.9rem; }
+blockquote { border-left: 4px solid var(--accent-color); padding-left: 1.5rem; margin: 1.5rem 0; font-size: 1.1rem; font-style: italic; color: var(--text-color); }

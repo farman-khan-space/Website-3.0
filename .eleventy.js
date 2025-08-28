@@ -1,15 +1,14 @@
 module.exports = function(eleventyConfig) {
-  // Tell Eleventy to copy the 'css' folder to the output folder '_site'.
+  // Copy the 'css' and 'js' folders to the output folder '_site'.
   eleventyConfig.addPassthroughCopy("css");
+  eleventyConfig.addPassthroughCopy("js");
 
   return {
-    // The directory where your page templates are located.
     dir: {
       input: "pages",
-      includes: "../_includes", // Relative to input directory
+      includes: "../_includes",
       output: "_site"
     },
-    // This is the fix: Set Nunjucks as the template engine for HTML files.
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk"
   };
