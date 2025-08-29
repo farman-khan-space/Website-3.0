@@ -1,0 +1,41 @@
+/* ==========================================================================
+   7. FONT THEME EXPANSION (Corrected to use CSS variables)
+   ========================================================================== */
+
+/*
+  THE FIX:
+  Each class now updates the --font-family variable. The `body` rule in
+  _base.css then applies whatever font is set in that variable.
+  This resolves the conflict and makes the themes work correctly.
+*/
+
+/* 1. Futura-like (Geometric Sans-Serif) */
+.font-jost { --font-family: 'Jost', sans-serif; }
+
+/* 2. Popular Geometric Sans-Serif */
+.font-poppins { --font-family: 'Poppins', sans-serif; }
+
+/* 3. Highly Readable UI Sans-Serif */
+.font-inter { --font-family: 'Inter', sans-serif; }
+
+/* 4. Friendly & Rounded Sans-Serif */
+.font-lato { --font-family: 'Lato', sans-serif; }
+
+/* 5. Modern & Versatile Sans-Serif */
+.font-montserrat { --font-family: 'Montserrat', sans-serif; }
+
+/* 6. Clean & Neutral Sans-Serif */
+.font-source-sans { --font-family: 'Source Sans Pro', sans-serif; }
+
+/* 7. Corporate & Crisp Sans-Serif */
+.font-ibm-plex { --font-family: 'IBM Plex Sans', sans-serif; }
+
+/* 8. Playful & Modern Sans-Serif */
+.font-rubik { --font-family: 'Rubik', sans-serif; }
+
+/* 9. Elegant & Classic Serif (Good for Headings) */
+.font-playfair { --font-family: 'Playfair Display', serif; }
+
+/* 10. Highly Readable Body Serif */
+.font-merriweather { --font-family: 'Merriweather', serif; }
+

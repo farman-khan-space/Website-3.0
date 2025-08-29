@@ -1,0 +1,143 @@
+/* ==========================================================================
+   4. EXPERIMENTAL THEMES (Corrected for .dark on <html> and font conflicts)
+   ========================================================================== */
+
+/*
+  THE FIX:
+  All `font-family` properties have been REMOVED from the color themes.
+  This allows the font themes in _fonts.css to work independently.
+*/
+
+/* --- Theme 1: Professional Blue --- */
+.theme-professional-blue {
+    --accent-color: #0d6efd;
+    --border-color: #dee2e6;
+    --card-bg-color: #f8f9fa;
+    --focus-outline-color: #0d6efd;
+}
+html.dark .theme-professional-blue {
+    --accent-color: #3d8bfd;
+    --border-color: #343a40;
+    --card-bg-color: #212529;
+    --focus-outline-color: #3d8bfd;
+}
+.theme-professional-blue header {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+html.dark .theme-professional-blue header {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.theme-professional-blue .site-footer {
+    background-color: var(--card-bg-color);
+    border-top: 1px solid var(--border-color);
+}
+
+
+/* --- Theme 2: Developer Chic --- */
+.theme-developer-chic {
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --accent-color: #198754;
+    --card-bg-color: #f9f9f9;
+    --border-color: #f0f0f0;
+    --focus-outline-color: #198754;
+}
+html.dark .theme-developer-chic {
+    --bg-color: #000000;
+    --text-color: #f0f0f0;
+    --accent-color: #20c997;
+    --card-bg-color: #111111;
+    --border-color: #222222;
+    --focus-outline-color: #20c997;
+}
+.theme-developer-chic header,
+.theme-developer-chic .site-footer {
+    border-color: var(--border-color);
+}
+.theme-developer-chic .site-footer {
+    background-color: var(--bg-color);
+}
+
+
+/* --- Theme 3: Minimalist Mono --- */
+.theme-minimalist-mono {
+    --bg-color: #fff;
+    --text-color: #111;
+    --accent-color: #555;
+    --card-bg-color: #fafafa;
+    --border-color: #eee;
+    --focus-outline-color: #111;
+}
+html.dark .theme-minimalist-mono {
+    --bg-color: #111;
+    --text-color: #eee;
+    --accent-color: #aaa;
+    --card-bg-color: #1a1a1a;
+    --border-color: #333;
+    --focus-outline-color: #eee;
+}
+.theme-minimalist-mono header {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+}
+html.dark .theme-minimalist-mono header {
+    background-color: rgba(17, 17, 17, 0.8);
+}
+.theme-minimalist-mono .site-footer {
+    background-color: transparent;
+    border-top: 1px solid var(--border-color);
+}
+
+
+/* --- Theme 4: Forest Mint --- */
+.theme-forest-mint {
+    --bg-color: #fcfcfc;
+    --text-color: #2a2a2a;
+    --accent-color: #0a4d50; /* Deep Forest Green */
+    --card-bg-color: #ffffff;
+    --border-color: #eaeaea;
+    --focus-outline-color: #0a4d50;
+}
+html.dark .theme-forest-mint {
+    --bg-color: #1a1d20; /* Deep charcoal */
+    --text-color: #e0e0e0;
+    --accent-color: #6eeec6; /* Bright Mint */
+    --card-bg-color: #25292d;
+    --border-color: #3a3f44;
+    --focus-outline-color: #6eeec6;
+}
+.theme-forest-mint header {
+    border-bottom: 1px solid var(--border-color);
+}
+.theme-forest-mint .site-footer {
+    background-color: var(--card-bg-color);
+    border-top: 1px solid var(--border-color);
+}
+
+
+/* --- Theme 5: Solar Flare --- */
+.theme-solar-flare {
+    --bg-color: #ffffff;
+    --text-color: #1e293b; /* Slate text color */
+    --accent-color: #f59e0b; /* Amber/Orange */
+    --card-bg-color: #f8fafc;
+    --border-color: #e2e8f0;
+    --focus-outline-color: #f59e0b;
+}
+html.dark .theme-solar-flare {
+    --bg-color: #0f172a; /* Deep Navy/Slate */
+    --text-color: #e2e8f0;
+    --accent-color: #fb923c; /* Bright Orange */
+    --card-bg-color: #1e293b;
+    --border-color: #334155;
+    --focus-outline-color: #fb923c;
+}
+.theme-solar-flare header {
+    background-color: var(--card-bg-color);
+    border-bottom: 1px solid var(--border-color);
+}
+.theme-solar-flare .site-footer {
+    background-color: var(--bg-color);
+    border-top: 1px solid var(--border-color);
+}
+

@@ -1,0 +1,90 @@
+/* ==========================================================================
+   2. REUSABLE COMPONENTS
+   - Header, Footer, Navigation
+   - Cards, Grids
+   - Buttons, Floating Controls
+   ========================================================================== */
+
+/* --- Header --- */
+header { position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height); background-color: var(--bg-color); border-bottom: 1px solid var(--border-color); z-index: 1000; display: flex; align-items: center; transition: background-color 0.3s ease, border-color 0.3s ease; }
+.header-container { display: flex; justify-content: flex-end; align-items: center; width: 100%; position: relative; }
+.logo { position: absolute; left: 1.5rem; top: 50%; transform: translateY(-50%); }
+.logo a { text-decoration: none; display: inline-block; }
+.logo-pair { display: inline-flex; align-items: center; }
+.logo-pair .logo-wordmark { margin-left: 15px; }
+.logo-icon { height: 45px; }
+.logo-wordmark { height: 50px; }
+.logo-pair-dark { display: none; }
+.dark .logo-pair-light { display: none; }
+.dark .logo-pair-dark { display: inline-flex; }
+.header-controls { display: flex; align-items: center; gap: 0.5rem; }
+.menu-toggle { background: none; border: none; cursor: pointer; color: var(--text-color); padding: 0.5rem; border-radius: 50%; display: none; align-items: center; justify-content: center; z-index: 1001; }
+.menu-toggle:hover { background-color: var(--card-bg-color); }
+nav ul { list-style: none; display: flex; gap: 1.5rem; }
+nav a { font-weight: 500; }
+nav a.active { color: var(--text-color); font-weight: bold; }
+
+/* --- Footer --- */
+footer { border-top: 1px solid var(--border-color); padding: 2rem 0; text-align: center; color: var(--accent-color); transition: border-color 0.3s ease; }
+
+/* --- Card & Grid System --- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+.card {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    text-decoration: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+.dark .card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+}
+.card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.card-content h3 {
+    margin-top: 0;
+    color: var(--text-color);
+}
+.card-content p {
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+.card-content .card-footer {
+    margin-top: auto;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* --- Floating Control Dock --- */
+.floating-controls { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1000; }
+.control-btn { width: 50px; height: 50px; border-radius: 50%; background-color: var(--card-bg-color); color: var(--text-color); border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: transform 0.2s, background-color 0.2s; }
+.dark .control-btn { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
+.control-btn:hover { transform: scale(1.1); background-color: var(--bg-color); }
+#theme-toggle-floating .sun { display: none; }
+#theme-toggle-floating .moon { display: block; }
+.dark #theme-toggle-floating .sun { display: block; }
+.dark #theme-toggle-floating .moon { display: none; }
+#scroll-to-top { opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.3s, visibility 0.3s, transform 0.3s; }
+#scroll-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }

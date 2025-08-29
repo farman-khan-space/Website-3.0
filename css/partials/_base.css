@@ -1,0 +1,62 @@
+/* ==========================================================================
+   1. BASE STYLES
+   - Root variables (colors, fonts, sizes)
+   - Dark mode variables
+   - CSS reset and base typography
+   - Global layout rules
+   ========================================================================== */
+
+/* --- Root Variables and Base Styles --- */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #212121;
+    --accent-color: #757575;
+    --card-bg-color: #f5f5f5;
+    --border-color: #e0e0e0;
+    --focus-outline-color: #007bff;
+    /* This variable defines the default/fallback font for the entire site. */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --container-width: 1100px;
+    --header-height: 70px;
+}
+
+.dark {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --accent-color: #c0c0c0;
+    --card-bg-color: #1e1e1e;
+    --border-color: #333333;
+    --focus-outline-color: #3d8bfd;
+}
+
+/* --- Reset and Typography --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* This is the key: The body now correctly uses the --font-family variable. */
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.nav-open { overflow: hidden; }
+h1, h2, h3 { line-height: 1.2; margin-bottom: 1rem; }
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+a { color: var(--accent-color); text-decoration: none; transition: color 0.2s ease; border-radius: 2px; }
+a:hover { color: var(--text-color); }
+
+/* --- Accessibility Focus --- */
+a:focus-visible, .card:focus-visible, .control-btn:focus-visible {
+    outline: 2px solid var(--focus-outline-color);
+    outline-offset: 2px;
+}
+
+/* --- Layout --- */
+.container { max-width: var(--container-width); margin: 0 auto; padding: 0 1.5rem; }
+main { padding-top: var(--header-height); padding-bottom: 4rem; }
+section { padding: 3rem 0; }
+
