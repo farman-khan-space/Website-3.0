@@ -1,0 +1,24 @@
+---
+layout: layouts/base.html
+---
+
+<article class="container">
+
+  {# The header section has been removed to prevent duplicate titles. #}
+  {# The title will now come directly from your markdown file. #}
+
+  {% if tags.includes("posts") %}
+    <div class="post-content">
+      {{ content | safe }}
+    </div>
+  {% elif tags.includes("projects") %}
+     <div class="project-case-study">
+      {{ content | safe }}
+    </div>
+  {% else %}
+    <div>
+       {{ content | safe }}
+    </div>
+  {% endif %}
+
+</article>

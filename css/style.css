@@ -1,250 +1,309 @@
 /* ==========================================================================
-   1. GLOBAL STYLES (from global.css)
+   1. GLOBAL STYLES
    ========================================================================== */
 
 /* --- Root Variables and Base Styles --- */
-/* :root targets the <html> element and is the best place to define global CSS variables.
-   This allows you to manage your site's theme from one central location. */
 :root {
-    /* --bg-color: The main background for the light theme. */
     --bg-color: #ffffff;
-    /* --text-color: The main text color for the light theme. */
     --text-color: #212121;
-    /* --accent-color: The color for links and secondary text. */
     --accent-color: #757575;
-    /* --card-bg-color: The background color for cards. */
     --card-bg-color: #f5f5f5;
-    /* --border-color: The color for borders and dividers. */
     --border-color: #e0e0e0;
-    /* --font-family: The primary font for the entire site. */
+    --focus-outline-color: #007bff;
     --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    /* --container-width: The maximum width for the main content area. */
     --container-width: 1100px;
-    /* --header-height: The height of the fixed header bar. */
     --header-height: 70px;
 }
 
-/* This block redefines the variables when the <html> tag has a class of "dark",
-   which is toggled by your JavaScript to switch to dark mode. */
 .dark {
     --bg-color: #121212;
     --text-color: #e0e0e0;
     --accent-color: #c0c0c0;
     --card-bg-color: #1e1e1e;
     --border-color: #333333;
+    --focus-outline-color: #3d8bfd;
 }
 
 /* --- Reset and Typography --- */
-/* A standard CSS reset to ensure consistent styling across all browsers. */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-/* Base styles for the <body> element. */
 body { font-family: var(--font-family); background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: background-color 0.3s ease, color 0.3s ease; }
-/* Prevents the page from scrolling when the mobile navigation overlay is open. */
 body.nav-open { overflow: hidden; }
-/* Base styles for all heading tags. */
 h1, h2, h3 { line-height: 1.2; margin-bottom: 1rem; }
 h1 { font-size: 2.5rem; }
 h2 { font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 2rem; }
 h3 { font-size: 1.5rem; }
-/* Base styles for all links (<a> tags). */
-a { color: var(--accent-color); text-decoration: none; transition: color 0.2s ease; }
+a { color: var(--accent-color); text-decoration: none; transition: color 0.2s ease; border-radius: 2px; }
 a:hover { color: var(--text-color); }
 
+/* --- REFINEMENT: Accessibility Focus --- */
+a:focus-visible, .card:focus-visible, .control-btn:focus-visible {
+    outline: 2px solid var(--focus-outline-color);
+    outline-offset: 2px;
+}
+
 /* --- Layout --- */
-/* The .container class centers your content and applies consistent side padding. */
 .container { max-width: var(--container-width); margin: 0 auto; padding: 0 1.5rem; }
-/* The <main> element gets top padding to prevent content from being hidden by the fixed header. */
 main { padding-top: var(--header-height); padding-bottom: 4rem; }
-/* Adds consistent vertical spacing between <section> elements. */
 section { padding: 3rem 0; }
 
 /* --- Header --- */
-/* Styles the main header bar. It's fixed to the top of the page. */
 header { position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height); background-color: var(--bg-color); border-bottom: 1px solid var(--border-color); z-index: 1000; display: flex; align-items: center; transition: background-color 0.3s ease, border-color 0.3s ease; }
-/* The container inside the header. `position: relative` makes it a reference point for the absolutely positioned logo. */
 .header-container { display: flex; justify-content: flex-end; align-items: center; width: 100%; position: relative; }
-/* The logo is "lifted" out of the normal flow, allowing it to be positioned independently. */
 .logo { position: absolute; left: 1.5rem; top: 50%; transform: translateY(-50%); }
 .logo a { text-decoration: none; display: inline-block; }
-/* Aligns the logo icon and wordmark side-by-side. */
 .logo-pair { display: inline-flex; align-items: center; }
-/* Creates space between the icon and the wordmark. */
 .logo-pair .logo-wordmark { margin-left: 15px; }
 .logo-icon { height: 45px; }
 .logo-wordmark { height: 50px; }
-/* The following rules manage the visibility of the light vs. dark theme logos. */
 .logo-pair-dark { display: none; }
 .dark .logo-pair-light { display: none; }
 .dark .logo-pair-dark { display: inline-flex; }
-/* Container for the mobile menu button. */
 .header-controls { display: flex; align-items: center; gap: 0.5rem; }
-/* The mobile "hamburger" menu button. It's hidden on desktop by default. */
 .menu-toggle { background: none; border: none; cursor: pointer; color: var(--text-color); padding: 0.5rem; border-radius: 50%; display: none; align-items: center; justify-content: center; z-index: 1001; }
 .menu-toggle:hover { background-color: var(--card-bg-color); }
-/* The main navigation list. */
 nav ul { list-style: none; display: flex; gap: 1.5rem; }
 nav a { font-weight: 500; }
-/* Highlights the link of the current page. */
 nav a.active { color: var(--text-color); font-weight: bold; }
 
 /* --- Footer --- */
 footer { border-top: 1px solid var(--border-color); padding: 2rem 0; text-align: center; color: var(--accent-color); transition: border-color 0.3s ease; }
 
-/* --- Generic Card Style --- */
-/* Base style for all cards. `overflow: hidden` is important for the image's rounded corners. */
-.card { background-color: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; text-decoration: none; overflow: hidden; }
-/* Lifts the card on hover for a subtle interactive effect. */
-.card:hover { transform: translateY(-5px); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-.dark .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
-/* This is the container for the text content inside a card that has an image. */
-.card-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
-
-
-/* ========================================================== */
-/* NEWLY ADDED CODE FOR CARD IMAGES */
-/* ========================================================== */
+/* --- REFINEMENT: Consolidated Card & Grid System --- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+.card {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    text-decoration: none;
+    overflow: hidden;
+    /* REFINEMENT: Use flexbox to structure the entire card */
+    display: flex;
+    flex-direction: column;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+.dark .card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
 .card-image {
-    /* Makes the image fill the width of the card. */
     width: 100%;
-    /* Sets a consistent height for all images. */
     height: 200px;
-    /* Crucial property: ensures the image covers the area without being stretched or distorted. */
     object-fit: cover;
-    /* Adds a dividing line between the image and the text content below it. */
     border-bottom: 1px solid var(--border-color);
 }
-/* ========================================================== */
-/* END OF NEW CODE */
-/* ========================================================== */
-
+.card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows content to fill the card height */
+}
+.card-content h3 {
+    margin-top: 0;
+    color: var(--text-color);
+}
+.card-content p {
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* Allows paragraph to push elements below it */
+}
+.card-content .card-footer {
+    /* REFINEMENT: Pushes this element to the bottom of the card */
+    margin-top: auto;
+    font-weight: 500;
+    color: var(--text-color);
+}
 
 /* --- Floating Control Dock --- */
-/* Styles the container for the floating theme and scroll-to-top buttons. */
 .floating-controls { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1000; }
-/* Base styles for the circular buttons in the dock. */
 .control-btn { width: 50px; height: 50px; border-radius: 50%; background-color: var(--card-bg-color); color: var(--text-color); border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: transform 0.2s, background-color 0.2s; }
 .dark .control-btn { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); }
 .control-btn:hover { transform: scale(1.1); background-color: var(--bg-color); }
-/* These rules toggle the visibility of the sun/moon icons for the theme switcher. */
 #theme-toggle-floating .sun { display: none; }
 #theme-toggle-floating .moon { display: block; }
 .dark #theme-toggle-floating .sun { display: block; }
 .dark #theme-toggle-floating .moon { display: none; }
-/* Hides the scroll-to-top button until the user scrolls down. */
 #scroll-to-top { opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.3s, visibility 0.3s, transform 0.3s; }
 #scroll-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
 
 /* --- Mobile Styles --- */
-/* This @media query contains all style changes for screens 768px wide or smaller. */
 @media (max-width: 768px) {
-    /* On mobile, the icon is hidden to save space. */
     .logo-icon { display: none; }
-    /* A smaller size for the wordmark on mobile. */
     .logo-wordmark { height: 34px; }
-    /* The space next to the wordmark is removed since the icon is gone. */
     .logo-pair .logo-wordmark { margin-left: 0; }
-
-    /* Smaller heading sizes for better readability on small screens. */
     h1 { font-size: 2.2rem; }
     h2 { font-size: 1.8rem; }
-    /* Shows the "hamburger" menu button on mobile. */
     .menu-toggle { display: flex; }
-    /* Styles the full-screen navigation overlay. */
     #main-nav { position: fixed; top: 0; right: 0; width: 100%; height: 100%; background-color: var(--bg-color); transform: translateX(100%); transition: transform 0.3s ease-in-out; display: flex; justify-content: center; align-items: center; }
-    /* This class is added by JavaScript to slide the menu into view. */
     body.nav-open #main-nav { transform: translateX(0); }
-    /* Stacks the navigation links vertically in the mobile menu. */
     #main-nav ul { flex-direction: column; text-align: center; gap: 2rem; }
     #main-nav a { font-size: 1.5rem; }
-    /* Adjusts the position and size of the floating control buttons on mobile. */
     .floating-controls { bottom: 15px; right: 15px; }
     .control-btn { width: 55px; height: 55px; }
 }
 
 /* --- Page Load Fade-in Animation --- */
-/* A simple animation to gently fade the page in when it first loads. */
 body { animation: fadeIn 0.8s ease-out; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-
 /* ==========================================================================
-   2. HOME PAGE STYLES (from home.css)
+   2. PAGE-SPECIFIC STYLES
    ========================================================================== */
+
+/* --- Home & Generic Pages --- */
 #intro { display: flex; align-items: center; justify-content: center; text-align: center; min-height: calc(60vh - var(--header-height)); }
 .intro-content .role { font-size: 1.5rem; color: var(--accent-color); margin: 0.5rem 0; }
 .intro-content .tagline { font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
-.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-.project-card h3 { color: var(--text-color); }
-.project-card p { flex-grow: 1; color: var(--accent-color); margin-bottom: 1rem; }
-.project-card .view-project { font-weight: 500; align-self: flex-start; color: var(--text-color); }
+.page-content, .project-case-study, .post-content { max-width: 800px; margin-left: auto; margin-right: auto; }
+.page-content .subtitle { font-size: 1.1rem; color: var(--accent-color); margin-top: -1rem; margin-bottom: 3rem; text-align: center; }
+
+/* --- Portfolio & Blog Listing --- */
 .article-list { display: grid; gap: 1.5rem; }
-.article-card p { color: var(--accent-color); margin-bottom: 1rem; flex-grow: 1; }
-.article-card .read-more { font-weight: 500; align-self: flex-start; }
-
-
-/* ==========================================================================
-   3. PORTFOLIO PAGE STYLES (from portfolio.css)
-   ========================================================================== */
-#portfolio .subtitle { text-align: center; font-size: 1.1rem; color: var(--accent-color); margin-top: -1rem; margin-bottom: 3rem; }
-.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-.portfolio-grid .card h3 { margin-top: 0; }
-.portfolio-grid .card p { color: var(--accent-color); flex-grow: 1; margin-bottom: 1.5rem; }
-.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-.tags span { background-color: var(--border-color); color: var(--accent-color); padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-weight: 500; transition: background-color 0.3s ease; }
-.dark .tags span { background-color: #333; }
-.portfolio-grid .view-project { font-weight: 500; color: var(--text-color); align-self: flex-start; }
-
-
-/* ==========================================================================
-   4. BLOG LISTING PAGE STYLES (from blog.css)
-   ========================================================================== */
-.article-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
-.article-card h3 { margin-top: 0; color: var(--text-color); }
 .article-card .date { font-size: 0.9rem; color: var(--accent-color); margin-bottom: 1rem; }
 .article-card .excerpt { color: var(--text-color); margin-bottom: 1.5rem; }
-.article-card .read-more { font-weight: 600; color: var(--text-color); }
 
+/* --- REFINEMENT: Consolidated Tag Style --- */
+.tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    list-style: none; /* In case you use a <ul> */
+}
+.tag-item {
+    background-color: var(--border-color);
+    color: var(--accent-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+.dark .tag-item {
+    background-color: #333;
+}
 
-/* ==========================================================================
-   5. GENERIC PAGE STYLES (from page.css)
-   ========================================================================== */
-.page-content { max-width: 800px; text-align: center; padding-top: 2rem; padding-bottom: 2rem; }
-.page-content .subtitle { font-size: 1.1rem; color: var(--accent-color); margin-top: -1rem; margin-bottom: 3rem; }
-.profile-image-container { margin-bottom: 2rem; }
+/* --- About Page Specifics --- */
+.profile-image-container { margin-bottom: 2rem; text-align: center; }
 .profile-image { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--border-color); object-fit: cover; }
 .about-text { text-align: left; line-height: 1.8; }
-.about-text p { margin-bottom: 1.5rem; }
-.contact-info { margin-bottom: 3rem; line-height: 2; }
+.contact-info { margin-bottom: 3rem; line-height: 2; text-align: center; }
 .contact-info a { color: var(--text-color); font-weight: 500; }
 
-
-/* ==========================================================================
-   6. SINGLE POST STYLES (from post.css)
-   ========================================================================== */
-.post-header { text-align: center; border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; margin-bottom: 2rem; }
-.post-header .post-meta { margin-top: 1rem; font-size: 0.9rem; color: var(--accent-content); }
-.post-content { max-width: 750px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; }
-.post-content h2, .post-content h3 { margin-top: 2.5rem; margin-bottom: 1rem; }
-.post-content p { margin-bottom: 1.5rem; }
-.post-content a { text-decoration: underline; }
-.post-content code { background-color: var(--card-bg-color); border: 1px solid var(--border-color); padding: 0.2rem 0.4rem; border-radius: 4px; }
-.back-to-blog { display: inline-block; margin-top: 3rem; font-weight: 600; }
-
-
-/* ==========================================================================
-   7. SINGLE PROJECT STYLES (from project.css)
-   ========================================================================== */
-.project-case-study { max-width: 800px; }
-.project-header { text-align: center; border-bottom: 1px solid var(--border-color); margin-bottom: 2rem; padding-bottom: 2rem; }
+/* --- Single Post / Project Styles --- */
+.post-header, .project-header {
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+}
+.post-header .post-meta { margin-top: 1rem; font-size: 0.9rem; color: var(--accent-color); }
 .project-header .summary { font-size: 1.1rem; color: var(--accent-color); max-width: 650px; margin: 0.5rem auto 0; }
-.project-case-study section { margin-bottom: 2.5rem; }
-.project-case-study h2 { border-bottom: none; font-size: 1.8rem; margin-bottom: 1.5rem; }
-.tools-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0.75rem; padding: 0; }
-.tools-list li { background-color: var(--border-color); color: var(--accent-color); padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.9rem; font-weight: 500; }
-.dark .tools-list li { background-color: #333; }
-.project-case-study ol { padding-left: 1.5rem; line-height: 1.8; }
-.project-case-study ol li { margin-bottom: 1rem; }
+.post-content, .project-case-study { font-size: 1.1rem; line-height: 1.8; }
+/* REFINEMENT: Improved Readability */
+.post-content p, .project-case-study p, .project-case-study ol li {
+    max-width: 65ch; /* Optimal line length for reading */
+}
+.post-content h2, .post-content h3, .project-case-study h2, .project-case-study h3 { margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: none; }
+.post-content a { text-decoration: underline; }
+.post-content code { background-color: var(--card-bg-color); border: 1px solid var(--border-color); padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; }
+.back-to-blog { display: inline-block; margin-top: 3rem; font-weight: 600; }
 .project-visual { max-width: 100%; height: auto; display: block; border-radius: 8px; border: 1px solid var(--border-color); margin: 2rem 0 0.5rem; }
 figcaption { text-align: center; font-style: italic; color: var(--accent-color); font-size: 0.9rem; }
 blockquote { border-left: 4px solid var(--accent-color); padding-left: 1.5rem; margin: 1.5rem 0; font-size: 1.1rem; font-style: italic; color: var(--text-color); }
 
+
+/* ==========================================================================
+   ENHANCED POST & PROJECT STYLES
+   ========================================================================== */
+
+/* --- Main Content Container for Readability --- */
+/* This is the most important rule. It sets a max-width for the text
+   to ensure the line length is comfortable for reading. 65ch is about
+   65 characters wide. */
+.post-content,
+.project-case-study {
+    max-width: 65ch;
+    margin: 0 auto; /* Centers the content block */
+}
+
+/* --- Improved Typography & Spacing --- */
+/* Adds more space after the main title */
+.post-header h1,
+.project-header h1 {
+    margin-bottom: 0.5rem;
+}
+
+/* Styles the subheadings (like "Key Principles") to make them stand out */
+.post-content h2,
+.project-case-study h2 {
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+/* Increases the font size for better readability */
+.post-content p,
+.project-case-study p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Stylized Blockquote --- */
+/* This makes the quote from John Tukey really pop */
+.post-content blockquote,
+.project-case-study blockquote {
+    font-style: italic;
+    color: var(--accent-color);
+    border-left: 4px solid var(--accent-color);
+    padding-left: 2rem;
+    margin: 2rem 0;
+    font-size: 1.2rem;
+}
+
+/* --- Enhanced Lists --- */
+/* Adds more space between list items for clarity */
+.post-content ol li,
+.post-content ul li,
+.project-case-study ol li,
+.project-case-study ul li {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* --- Clearer Links & Code Snippets --- */
+/* Makes links within the post body more obvious */
+.post-content a,
+.project-case-study a {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+    transition: all 0.2s ease;
+}
+
+.post-content a:hover,
+.project-case-study a:hover {
+    color: var(--text-color);
+    background-color: var(--card-bg-color);
+}
+
+/* Styles for inline `code` snippets */
+.post-content code,
+.project-case-study code {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+}

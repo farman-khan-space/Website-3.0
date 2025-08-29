@@ -3,8 +3,17 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("js");
   eleventyConfig.addPassthroughCopy("img");
 
-  // Add this line to create the 'limit' filter
   eleventyConfig.addFilter("limit", (arr, limit) => (arr || []).slice(0, limit));
+
+  // Create a collection for posts
+  eleventyConfig.addCollection("posts", function(collectionApi) {
+    return collectionApi.getFilteredByTags("posts").reverse();
+  });
+
+  // Create a collection for projects
+  eleventyConfig.addCollection("projects", function(collectionApi) {
+    return collectionApi.getFilteredByTags("projects").reverse();
+  });
 
   return {
     dir: {
