@@ -8,26 +8,21 @@ title: Blog
     <p class="subtitle">Thoughts on data, technology, and everything in between.</p>
 
     <div class="article-grid">
-        <a href="#" class="card article-card">
-            <div class="card-content">
-                <h3>The Rise of Augmented Analytics</h3>
-                <p class="excerpt">A look into how AI and machine learning are changing the landscape of data analysis, making it more accessible to everyone.</p>
-                <div class="details">
-                    <span class="date">August 24, 2025</span>
-                    <span class="read-more">Read More &rarr;</span>
+        {# This loop iterates through every file in your 'posts' folder #}
+        {% for post in collections.posts %}
+            <a href="{{ post.url | url }}" class="card article-card">
+                <img src="{{ post.data.featuredImage | url }}" alt="{{ post.data.featuredImageAlt }}" class="card-image">
+                <div class="card-content">
+                    <h3>{{ post.data.title }}</h3>
+                    <p class="excerpt">{{ post.data.excerpt }}</p>
+                    <div class="details">
+                        <span class="date">{{ post.date.toDateString() }}</span>
+                        <span class="read-more">Read More &rarr;</span>
+                    </div>
                 </div>
-            </div>
-        </a>
-
-        <a href="#" class="card article-card">
-            <div class="card-content">
-                <h3>5 Essential SQL Techniques for Data Analysts</h3>
-                <p class="excerpt">A practical guide to mastering crucial SQL skills for data manipulation, from window functions to common table expressions.</p>
-                <div class="details">
-                    <span class="date">July 15, 2025</span>
-                    <span class="read-more">Read More &rarr;</span>
-                </div>
-            </div>
-        </a>
+            </a>
+        {% else %}
+            <p>No posts have been written yet. Please check back soon!</p>
+        {% endfor %}
     </div>
 </section>
