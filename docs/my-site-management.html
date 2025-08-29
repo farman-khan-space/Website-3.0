@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eleventy Build Process Flowchart (HTML Version)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Helper class for connection lines/arrows */
+        .flow-arrow {
+            font-size: 2rem;
+            color: #4a5568; /* gray-600 */
+            line-height: 1;
+        }
+        .flow-arrow-sm {
+            font-size: 1.5rem;
+            color: #718096; /* gray-500 */
+        }
+        .flow-label {
+            font-size: 0.8rem;
+            color: #a0aec0; /* gray-400 */
+            padding: 0 0.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 flex flex-col items-center min-h-screen p-4 sm:p-6 md:p-8">
+
+    <div class="w-full max-w-7xl text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500 mb-2">
+            Eleventy Website Workflow
+        </h1>
+        <p class="text-lg text-gray-400">
+            A visual breakdown of the build process, content management, and theme design.
+        </p>
+    </div>
+
+    <!-- Main container for all sections -->
+    <div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- SECTION A -->
+        <div class="bg-gray-800/50 border border-gray-700 rounded-xl p-4 lg:col-span-3">
+            <h2 class="text-lg font-bold text-teal-400 mb-4 text-center">SECTION A: Core System & Build Process</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                <!-- Column 1: Config & Inputs -->
+                <div class="flex flex-col items-center gap-4">
+                    <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md w-full">📄 <strong>.eleventy.js</strong></div>
+                    <div class="flow-label">Defines Rules & pathPrefix</div>
+                    <div class="bg-gray-800/50 border border-gray-700 rounded-xl p-4 w-full">
+                        <h3 class="font-semibold text-center text-blue-400 mb-3">Input Sources</h3>
+                        <div class="flex flex-col gap-4">
+                            <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md">📝 Content <br> <span class="text-xs text-gray-400">pages/*.md</span></div>
+                            <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md">🎨 Styles & Scripts <br> <span class="text-xs text-gray-400">css/ & js/</span></div>
+                            <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md">🏛️ Layout <br> <span class="text-xs text-gray-400">pages/_includes/layouts/base.html</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column 2: Engine & Processing -->
+                <div class="flex flex-col items-center gap-4">
+                     <div class="flow-arrow hidden md:block">→</div>
+                     <div class="flow-arrow block md:hidden">↓</div>
+                     <div class="bg-gray-800 border-2 border-teal-500 rounded-full p-4 text-center flex flex-col justify-center items-center shadow-md aspect-square w-40 h-40">
+                        <span class="text-4xl">⚙️</span>
+                        <strong>Eleventy Engine</strong>
+                     </div>
+                     <div class="flex flex-col md:flex-row gap-4 mt-4">
+                        <div class="flex items-center gap-2"><span class="flow-label">1. Processes Templates</span><span class="flow-arrow-sm">→</span></div>
+                        <div class="flex items-center gap-2"><span class="flow-label">2. Passthrough Copy</span><span class="flow-arrow-sm">→</span></div>
+                     </div>
+                </div>
+                <!-- Column 3: Output & Deployment -->
+                <div class="flex flex-col items-center gap-4">
+                    <div class="bg-gray-800/50 border border-gray-700 rounded-xl p-4 w-full">
+                        <h3 class="font-semibold text-center text-blue-400 mb-3">Build Output (📁 _site/)</h3>
+                        <div class="flex flex-col gap-4">
+                            <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md">index.html, about.html, etc.</div>
+                            <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md">css/style.css, js/main.js</div>
+                        </div>
+                    </div>
+                    <div class="flow-label">3. Ready for Deployment</div>
+                    <div class="bg-green-800/50 border border-green-500 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md w-full">🚀 Deploy to GitHub Pages</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION B -->
+        <div class="bg-gray-800/50 border border-gray-700 rounded-xl p-4">
+            <h2 class="text-lg font-bold text-teal-400 mb-4 text-center">SECTION B: Content Workflow</h2>
+            <div class="flex flex-col items-center gap-4">
+                <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md w-full">💡 You have an idea</div>
+                <div class="flow-arrow">↓</div>
+                <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md w-full">🖋️ Create a new .md file</div>
+                <div class="flow-arrow">↓</div>
+                <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md w-full">
+                    <p>Choose location</p>
+                    <div class="flex justify-around w-full mt-2">
+                        <span class="text-xs">↙ Blog</span>
+                        <span class="text-xs">Project ↘</span>
+                    </div>
+                </div>
+                <div class="flow-arrow">↓</div>
+                 <div class="bg-gray-800/50 border border-gray-700 rounded-xl p-4 w-full">
+                    <h3 class="font-semibold text-center text-blue-400 mb-3">Critical Step: Frontmatter</h3>
+                    <pre class="bg-gray-900 rounded-md p-3 text-left text-xs overflow-x-auto"><code class="language-yaml">---
+layout: base.html
+title: "My Awesome New Post"
+date: 2025-08-28
+tags: ['tech', '11ty']
+---
+## My Post Title
+This is the content...</code></pre>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md w-full">👁️ Eleventy rebuilds site</div>
+                <div class="flow-arrow">↓</div>
+                <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md w-full">✅ New page is generated</div>
+                <div class="flow-arrow">↓</div>
+                <div class="bg-green-800/50 border border-green-500 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md w-full">🌍 Push changes to GitHub</div>
+            </div>
+        </div>
+
+        <!-- SECTION C -->
+        <div class="bg-gray-800/50 border border-gray-700 rounded-xl p-4 lg:col-span-2">
+            <h2 class="text-lg font-bold text-teal-400 mb-4 text-center">SECTION C: Theme & Design Workflow</h2>
+             <div class="flex flex-col items-center gap-4">
+                <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md w-full">🎨 You ask for a new theme</div>
+                <div class="flow-arrow">↓</div>
+                <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md w-full">🤖 I provide updated code</div>
+                <div class="flow-arrow">↓</div>
+                <div class="bg-gray-800/50 border border-gray-700 rounded-xl p-4 w-full">
+                    <h3 class="font-semibold text-center text-blue-400 mb-3">Files to be Modified</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md">🎨 css/style.css</div>
+                        <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md">🏗️ pages/.../base.html</div>
+                        <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md">🧩 (Optional) Partials</div>
+                    </div>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md w-full">🧑‍💻 You copy & paste the new code</div>
+                <div class="flow-arrow">↓</div>
+                <div class="flex flex-col md:flex-row items-center gap-4">
+                    <div class="bg-red-800/50 border border-red-500 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md font-bold">🚫 Content Files Remain Untouched</div>
+                    <div class="flow-arrow-sm hidden md:block">→</div>
+                    <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md">🔄 Eleventy rebuilds entire site</div>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md w-full">✨ Site directory reflects new design</div>
+                <div class="flow-arrow">↓</div>
+                <div class="bg-green-800/50 border border-green-500 rounded-lg p-4 text-center flex flex-col justify-center items-center shadow-md w-full">🚀 Deploy to see your refreshed website!</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+

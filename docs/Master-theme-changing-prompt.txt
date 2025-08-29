@@ -1,0 +1,87 @@
+📝 Master Prompt: My Website System
+
+(use this whenever you want theme/instructions without re-explaining your whole site)
+
+I have a portfolio website built with Eleventy (11ty). The site is intentionally kept minimal and modular so the structure/system is fixed, and I only want to swap themes/designs while keeping content and routing intact.
+
+Here is how my system is set up:
+
+Project Structure:
+
+Website-3.0/
+├── pages/                # All content files (Markdown or Nunjucks)
+│   ├── index.md          # Homepage
+│   ├── about.md          # About page
+│   ├── 404.md            # Custom 404 page
+│   └── (other pages)     
+│
+├── pages/_includes/      # Layouts and partials
+│   └── layouts/
+│       └── base.html     # Main base layout
+│
+├── css/                  # Stylesheets (themes go here)
+├── js/                   # JavaScript (minimal)
+├── .eleventy.js          # Eleventy config
+├── package.json
+└── _site/                # Build output (ignored in git)
+
+
+Eleventy Config (.eleventy.js):
+
+Input directory: pages/
+
+Includes directory: pages/_includes/
+
+Output directory: _site/
+
+Template engine: Nunjucks (.njk or .html)
+
+Passthrough copy: css/ and js/
+
+Path prefix: /Website-3.0/ for production (GitHub Pages), / for localhost.
+
+Layouts:
+
+Main layout is base.html inside pages/_includes/layouts/.
+
+Content pages (like 404.md) use layout: base.html in frontmatter.
+
+base.html contains the global HTML structure (head, header, footer, etc.).
+
+404 Page Example (404.md):
+
+---
+permalink: 404.html
+layout: base.html
+title: "Page Not Found"
+---
+# Oops!  
+Looks like you’re lost in the data space 🌌.  
+
+[Go back home](/Website-3.0/)
+
+
+Goals:
+
+I don’t want to break this system — only swap themes/designs.
+
+A theme means:
+
+new CSS (colors, typography, layouts)
+
+minor changes in base.html (structure like nav/footer)
+
+possibly extra includes/partials if theme needs them
+
+The content pages (.md) should remain unchanged.
+
+Your job as the AI:
+When I ask you for a new theme/design, you should:
+
+Tell me which existing files I must edit (e.g., css/style.css, pages/_includes/layouts/base.html, etc.).
+
+Provide me with updated snippets or replacements for those files.
+
+Keep file paths consistent with the above structure.
+
+Ensure everything will still deploy to GitHub Pages (using the /Website-3.0/ path prefix).
